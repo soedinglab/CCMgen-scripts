@@ -36,6 +36,7 @@ num_threads=4
 In order to generate all the necessary data to reproduce the analysis presented in the paper, run the following scripts from the CCMgen-scripts repository main folder:
 
 1. ```bash /bin/run_ccmpred_pll.sh $data_dir $num_threads```
+
 	This command will call CCMpredPy and predict contact maps by maximizing the pseudo-likelihood. 
 	It will generate *.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pll" for all proteins in the data set that are required to reproduce Figure 1.
 
@@ -47,7 +48,7 @@ In order to generate all the necessary data to reproduce the analysis presented 
 	This command will call CCMgen and generate 10000 protein sequences from a pre-defined Markov random field (learned in step 1) via MCMC sampling.
 	It will generate *.aln files in a new directory named samples_pll.
 
-4. ```bash bin/run_ccmgen_mcmc.sh $data_dir/predictions_pcd $num_threads
+4. ```bash bin/run_ccmgen_mcmc.sh $data_dir/predictions_pcd $num_threads```
         This command will call CCMgen and generate 10000 protein sequences from a pre-defined Markov random field (learned in step 2) via MCMC sampling.
         It will generate *mcmc.aln files in a new directory named samples_pcd.
 
