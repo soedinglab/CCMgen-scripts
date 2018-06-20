@@ -41,23 +41,28 @@ In order to generate all the necessary data to reproduce the analysis presented 
 	It will generate *.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pll" for all proteins in the data set that are required to reproduce Figure 1.
 
 2. ```bash /bin/run_ccmpred_pcd.sh $data_dir $num_threads```
+
         This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence. 
         It will generate *.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pcd" for all proteins in the data set that are required to reproduce Figure 1.
 
 3. ```bash bin/run_ccmgen_mcmc.sh $data_dir/predictions_pll $num_threads```
+
 	This command will call CCMgen and generate 10000 protein sequences from a pre-defined Markov random field (learned in step 1) via MCMC sampling.
 	It will generate *.aln files in a new directory named samples_pll.
 
 4. ```bash bin/run_ccmgen_mcmc.sh $data_dir/predictions_pcd $num_threads```
+
         This command will call CCMgen and generate 10000 protein sequences from a pre-defined Markov random field (learned in step 2) via MCMC sampling.
         It will generate *mcmc.aln files in a new directory named samples_pcd.
 
 5. ```bash bin/run_ccmpred_pcd_with_constraints.sh $data_dir $num_threads```
+
 	This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence.
 	Residue pairs that do not form contacts (C_beta distance > 12 angstrom) in the reference protein structure will receive zero couplings. 
 	Running this command will generate *.mat and *.braw.gz files in a folder named "predictions_pcd_constrained" for all proteins in the data set.
 
 6. ```bash bin/run_ccmgen.sh $data_dir $num_threads star```
+
 	This command will call CCMgen to generate a synthetic alignment along a STAR-tree topology and according to the constraints from Markov random
 	fields that have been learned in step 5. 
 	It will generate *star.aln files in a new directory named "samples_pcd_constrained" for all proteins in the data set.
@@ -68,12 +73,14 @@ In order to generate all the necessary data to reproduce the analysis presented 
         It will generate *binary.aln files in a new directory named "samples_pcd_constrained" for all proteins in the data set.
 	
 8. ```bash /bin/run_ccmpred_pcd_recover.sh $data_dir $num_threads star```
+
 	This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence.
 	The input alignments are the synthetic alignments generated with CCMgen along a star-tree topology in step 6.
 	It will generate *.mat, *.apc.star.mat and *.ec.star.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
 
 
 9. ```bash /bin/run_ccmpred_pcd_recover.sh $data_dir $num_threads binary```
+
         This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence.
         The input alignments are the synthetic alignments generated with CCMgen along a binary-tree topology in step 7.
         It will generate *.mat, *.apc.binary.mat and *.ec.binary.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
