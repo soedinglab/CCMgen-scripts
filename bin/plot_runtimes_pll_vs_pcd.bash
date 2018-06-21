@@ -2,7 +2,7 @@
 
 #------------------------------------------------------------------------------
 # This script will reproduce Figure 1d
-#   requires data generated from step 1 and 2
+#   requires contact matrix files generated in step 1 and 2
 #------------------------------------------------------------------------------
 
 
