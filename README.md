@@ -85,4 +85,17 @@ In order to generate all the necessary data to reproduce the analysis presented 
       The input alignments are the synthetic alignments generated with CCMgen along a binary-tree topology in step 7.
       It will generate *.mat, *.apc.binary.mat and *.ec.binary.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
 
-## Reproduce Plots
+## Reproduce Figure 1
+
+1. ```bash bin/plot_alignment_statistics_mcmc_vs_observed.sh $data_dir```
+	This command will generate plots like Figure 1a and 1b in a folder named 'plots/aliugnment_statistics' for all proteins in the PSICOV data set.
+	In order to generate the plots, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2. 
+	Furthermore, MCMC samples need to be generated in advance as described in step 3 and 4.
+	Note: the generated .html files can become large!
+	
+2. ```bash bin/plot_runtimes_pll_vs_pcd.sh $data_dir```
+	This command will generate boxplots to visualize the distribution of run times for learning MRF with CCMpredPy for all proteins in the data set. 
+	In order to generate this plot, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2.
+
+
+
