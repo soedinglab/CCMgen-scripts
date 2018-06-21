@@ -108,7 +108,6 @@ def main():
 
 
 
-
     #plot the distribution of runtimes for each method as boxplot
     plot_runtime(plot_data, methods, plot_dir)
 
