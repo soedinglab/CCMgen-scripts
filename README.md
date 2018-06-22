@@ -88,26 +88,30 @@ In order to generate all the necessary data to reproduce the analysis presented 
 ## Reproduce Figure 1
 
 1. ```bash bin/plot_alignment_statistics_mcmc_vs_observed.sh $data_dir```
+
 	This command will generate plots like Figure 1a and 1b for all proteins in the PSICOV data set.
 	In order to generate the plots, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2. 
 	Furthermore, MCMC samples need to be generated in advance as described in step 3 and 4.
 	Note: the generated .html files can become large!
-	Plots will be written to $data_dir/plots/alignment_statistics/.
+	Plots will be written to ```$data_dir/plots/alignment_statistics/```.
 	
 2. ```bash bin/plot_runtimes_pll_vs_pcd.sh $data_dir```
+
 	This command will generate boxplots to visualize the distribution of run times for learning MRF with CCMpredPy for all proteins in the data set. 
 	In order to generate this plot, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2.
-	The plot will be written to $data_dir/plots/runtime_boxplot_pseudo-likelihood_persistent contrastive divergence.html.
+	The plot will be written to ```$data_dir/plots/runtime_boxplot_pseudo-likelihood_persistent contrastive divergence.html```.
 
 ## Reproduce Figure 3
 
 1. ```bash bin/plot_contact_maps.sh $data_dir```
+
 	This command will generate plots of the contact score matrices, comprising the raw contact scores and APC and entropy corrected scores for all proteins in the PSICOV data set.
 	In order to generate the plots, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2.
-	Plots will be written to $data_dir/plots/contact_maps.
+	Plots will be written to ```$data_dir/plots/contact_maps```.
 
 2. ```bash bin/plot_scatter_apc_vs_ec.sh $data_dir```
+
 	This command will generate scatter plots of the APC correction term vs the entropy correction term per residue pair for all proteins in the PSICOV data set.
 	In order to generate the plots, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2.
-	Plots will be written to $data_dir/plots/apc_vs_ec/.
+	Plots will be written to ```$data_dir/plots/apc_vs_ec/```.
 
