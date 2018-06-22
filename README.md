@@ -98,4 +98,9 @@ In order to generate all the necessary data to reproduce the analysis presented 
 	In order to generate this plot, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2.
 
 
+## Reproduce Figure 3
+
+1. ```bash bin/plot_contact_maps.sh $data_dir```
+	This command will generate plots of the contact score matrices, comprising the raw contact scores and APC and entropy corrected scores for all proteins in the PSICOV data set.
+	In order to generate the plots, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1 and 2.
 
