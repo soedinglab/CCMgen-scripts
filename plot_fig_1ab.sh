@@ -45,7 +45,7 @@ do
     if [ -f $sampled_alignment_pll ]
     then
         plot_name_pll=$plot_dir"/$name.alignment_stats_mcmc_vs_observed.pll.html"
-        ccm_plot cmap -a $alignment_file -s $sampled_alignment_pll -o $plot_name_pll
+        ccm_plot aln-stats -a $alignment_file -s $sampled_alignment_pll -o $plot_name_pll --max-gap-pos 50
     fi
 
 
@@ -54,7 +54,7 @@ do
     if  [ -f $sampled_alignment_pcd ]
     then
         plot_name_pcd=$plot_dir"/$name.alignment_stats_mcmc_vs_observed.pcd.html"
-        ccm_plot aln-stats -a $alignment_file -s $sampled_alignment_pcd -o $plot_name_pcd
+        ccm_plot aln-stats -a $alignment_file -s $sampled_alignment_pcd -o $plot_name_pcd --max-gap-pos 50
     fi
 
 done
