@@ -40,7 +40,7 @@ do
 
 
     #generate plot for MRF model learned by maximizing pseudo-likelihood
-    raw_mat_pll=$mat_dir_pll"/$name.mat"
+    raw_mat_pll=$mat_dir_pll"/$name.raw.mat"
 
     if [ -f $raw_mat_pll ]
     then
@@ -60,7 +60,7 @@ do
     fi
 
     #generate plot for MRF model learned by maximizing pseudo-likelihood
-    raw_mat_pcd=$mat_dir_pcd"/$name.mat"
+    raw_mat_pcd=$mat_dir_pcd"/$name.raw.mat"
 
     if [ -f $raw_mat_pcd ]
     then
