@@ -41,12 +41,12 @@ In order to generate all the necessary data to reproduce the analysis presented 
 1. ```bash run_ccmpred_pll.sh $data_dir $num_threads```
 
 	This command will call CCMpredPy and predict contact maps by maximizing the pseudo-likelihood. 
-	It will generate *.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pll" for all proteins in the data set that are required to reproduce Figure 1.
+	It will generate *.raw.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pll" for all proteins in the data set that are required to reproduce Figure 1.
 
 2. ```bash run_ccmpred_pcd.sh $data_dir $num_threads```
 
       This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence. 
-      It will generate *.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pcd" for all proteins in the data set that are required to reproduce Figure 1.
+      It will generate *.raw.mat, *.apc.mat and *.braw.gz files in a folder named "predictions_pcd" for all proteins in the data set that are required to reproduce Figure 1.
 
 3. ```bash run_ccmgen_mcmc.sh $data_dir/predictions_pll $num_threads```
 
@@ -74,18 +74,18 @@ In order to generate all the necessary data to reproduce the analysis presented 
         fields that have been learned in step 5.
         It will generate *binary.aln files in a new directory named "samples_pcd_constrained" for all proteins in the data set.
 	
-8. ```bash run_ccmpred_pcd_recover.sh $data_dir $num_threads star```
+8. ```bash run_ccmpred_recover.sh $data_dir $num_threads star```
 
 	This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence.
 	The input alignments are the synthetic alignments generated with CCMgen along a star-tree topology in step 6.
-	It will generate *.mat, *.apc.star.mat and *.ec.star.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
+	It will generate *.raw.star.mat, *.apc.star.mat and *.ec.star.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
 
 
-9. ```bash run_ccmpred_pcd_recover.sh $data_dir $num_threads binary```
+9. ```bash run_ccmpred_recover.sh $data_dir $num_threads binary```
 
       This command will call CCMpredPy and predict contact maps by learning a Markov random field with persistent contrastive divergence.
       The input alignments are the synthetic alignments generated with CCMgen along a binary-tree topology in step 7.
-      It will generate *.mat, *.apc.binary.mat and *.ec.binary.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
+      It will generate *.raw.binary.mat, *.apc.binary.mat and *.ec.binary.mat files in a folder named "recover_pcd_constrained" for all proteins in the data set.
 
 ## Reproduce Figure 1
 
@@ -124,6 +124,29 @@ In order to generate all the necessary data to reproduce the analysis presented 
 	Plots will be written to ```$data_dir/plots/apc_vs_ec/```.
 
 ## Reproduce Figure 6
+
+
+```python plot_fig_6.py $data_dir```
+
+This script will reproduce Figures 6A, B and C.
+
+
+## Reproduce Supplemental Figures
+
+1. ```python plot_fig_S4.py $data_dir```
+
+	This script will reproduce supplememtal Figure 4"
+	It generates a boxplot visualizing the pearson correlation coefficients between the APC and EC correction terms for all pairs of residues over all proteins in the PSICOV dataset.
+	The plot will be written to ```$data_dir/plots/supplement/fig_S4.html```.
+		
+
+
+2. ```python plot_fig_S5.py $data_dir```
+
+	This script fill reproduce supplemental Figures 5A and 5B: 
+	boxplots visualizing the distribution of mutation rates used for generating the synthetic alignments with CCMgen and boxplots visualizing the difference in Neff values between synthetic and original Pfam alignments.
+	The plots will be written to ```$data_dir/plots/supplement/```.	
+
 
 
 
