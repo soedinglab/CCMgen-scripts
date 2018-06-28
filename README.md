@@ -18,13 +18,20 @@ Running the scripts in this repository requires an installation of [CCMgen/CCMpr
 
 First of all, download the [PSICOV dataset](http://bioinfadmin.cs.ucl.ac.uk/downloads/PSICOV/suppdata/) which is the basis for the following analysis.
 
+```bash
+mkdir psicov_data
+cd psicov_data
+wget http://bioinfadmin.cs.ucl.ac.uk/downloads/PSICOV/suppdata/suppdata.tar.gz
+tar -xvf suppdata.tar.gz
+```
+
 
 ## Reproduce Raw Data
 
 Next, specify the path to the PSICOV data set that you just downloaded and the number of OMP threads that you want to use for parallelization:
 
 ```bash
-data_dir=path/to/psicov/data/
+data_dir=path/to/psicov_data/
 num_threads=4
 
 ```
