@@ -44,7 +44,7 @@ fi
 #------------------------------------------------------------------------------
 
 settings=" --aln-format psicov --max-gap-pos 50 --max-gap-seq 75 --num-threads $num_threads"
-settings=$settings" --tree-$topology --mutation-rate-neff --burn-in 10"
+settings=$settings" --tree-$topology --mutation-rate-neff --seq0-mrf 10"
 
 #------------------------------------------------------------------------------
 # run CCMgen
