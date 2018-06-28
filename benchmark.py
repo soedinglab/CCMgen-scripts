@@ -242,6 +242,12 @@ class Benchmark():
             protein = os.path.basename(mat_file).split(".")[0]
             self.evaluation_data[method_name][protein] = mat_file
 
+    def reset_methods(self):
+        self.ordered_methods = []
+        self.evaluation_data = {}
+        self.evaluation_statistics = {}
+        self.filter = []
+
     def add_constraint(self, key, value, operator):
         self.filter.append(
             {"key": key,
