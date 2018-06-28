@@ -12,30 +12,22 @@ import os
 import glob
 import plotly.graph_objs as go
 from plotly.offline import plot as plotly_plot
-import plotting.utils.io_utils as io
+import ccmpred.io.contactmatrix
 
 def parse_args():
     """
-    Parse command line arguments
+    parse command line arguments
     :return:
     """
 
-    parser = argparse.ArgumentParser(description='plot benchmark for specified eval files and scores.')
-    parser.add_argument("plot_dir",  type=str, help="path to print plot files")
-    parser.add_argument("mat_dirs",  type=str, help="comma separated string of paths to folders with *mat files")
-    parser.add_argument("method",    type=str, help="comma separated string of method names")
+    parser = argparse.ArgumentParser(description='Plot CCMgen paper Figure 1C.')
+    parser.add_argument("data_dir", type=str, help="path to psicov data working directory")
 
     args = parser.parse_args()
 
     return args
 
-def plot_runtime(plot_data, methods, plot_dir):
-
-    plot_name = plot_dir+"/runtime_boxplot"
-    for method in methods:
-        plot_name+="_"+str(method)
-    plot_name+=".html"
-
+def plot_runtime(plot_data, plot_file):
 
     data = []
     for method,runtimes in plot_data.items():
@@ -70,22 +62,17 @@ def plot_runtime(plot_data, methods, plot_dir):
         )
     }
 
-    plotly_plot(plot, filename=plot_name, auto_open=False, show_link=False)
-
-
+    plotly_plot(plot, filename=plot_file, auto_open=False, show_link=False)
 
 def main():
 
     #parse command line arguments
     args = parse_args()
 
-    plot_dir        = args.plot_dir
-    mat_dirs        = args.mat_dirs.split(",")
-    methods         = args.method.split(",")
-
-    if len(mat_dirs) != len(methods):
-        print("Number of specified method names does not match number of specified mat folders!")
-        sys.exit(1)
+    data_dir = args.data_dir
+    plot_dir = data_dir + "/plots/"
+    mat_dirs = [data_dir + "/predictions_pll/", data_dir + "/predictions_pcd/"]
+    methods = ["pseudo-likelihood", "persistent contrastive divergence"]
 
 
     if not os.path.exists(plot_dir):
@@ -102,14 +89,14 @@ def main():
         plot_data[methods[id]] = []
 
         for mat_file in mat_files:
-            meta = io.read_json_from_mat(mat_file)
-            runtime =io.find_dict_key("runtime", meta)
+            mat, meta = ccmpred.io.contactmatrix.read_matrix(mat_file)
+            runtime =ccmpred.io.contactmatrix.find_dict_key("runtime", meta)
             plot_data[methods[id]].append(runtime)
 
 
-
     #plot the distribution of runtimes for each method as boxplot
-    plot_runtime(plot_data, methods, plot_dir)
+    plot_file = plot_dir + "fig_1d.html"
+    plot_runtime(plot_data, plot_file)
 
 
 

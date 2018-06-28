@@ -7,9 +7,6 @@
 #   The path to the directory containing the PSICOV data needs to be specified
 #   by the first argument.
 #   The second arguments specifies the number of OMP threads for parallelization.
-#   This will be a constrained run, where all residue pairs that are not forming
-#   a contact in the reference protein structure, will receive zero couplings
-#   (Using a coarse definition for a contact with C_beta distance > 12 angstrom).
 #------------------------------------------------------------------------------
 
 
@@ -29,9 +26,8 @@ echo "using " $OMP_NUM_THREADS "threads for omp parallelization"
 #------------------------------------------------------------------------------
 # create data structure
 #------------------------------------------------------------------------------
-mat_dir=$data_dir"/predictions_pcd_constrained/"
+mat_dir=$data_dir"/predictions_pcd/"
 alignment_dir=$data_dir"/aln/"
-pdb_dir=$data_dir"/pdb/"
 
 if [ ! -d $mat_dir ]
 then
@@ -63,14 +59,15 @@ do
     name=$(basename $alignment_file ".aln")
 
     file_paths=" -b "$mat_dir"/"$name".braw.gz "
-    file_paths=$file_paths" -m $mat_dir/$name.mat "
-    file_paths=$file_paths" --pdb-file $pdb_dir/$name.pdb --contact-threshold 12"
+    file_paths=$file_paths" -m $mat_dir/$name.raw.mat "
+    file_paths=$file_paths" --apc $mat_dir/$name.apc.mat "
+    file_paths=$file_paths" --entropy-correction $mat_dir/$name.ec.mat "
     file_paths=$file_paths" $alignment_file "
     log_file=$mat_dir"/"$name.log
 
     if [ ! -f $log_file ]
     then
-        echo -e "Running CCMpredPy with PCD (constrained) for protein: $name \n(Status is logged in: $log_file)"
+        echo -e "Running CCMpredPy with PCD for protein: $name \n(Status is logged in: $log_file)"
         ccmpred $settings" "$file_paths > $log_file
     fi
 done

@@ -59,7 +59,7 @@ do
 
     name=$(basename $alignment_file ".aln")
 
-    file_paths=" -m $mat_dir/$name.$topology.mat "
+    file_paths=" -m $mat_dir/$name.$topology.raw.mat "
     file_paths=$file_paths" --apc $mat_dir/$name.apc.$topology.mat "
     file_paths=$file_paths" --entropy-correction $mat_dir/$name.ec.$topology.mat "
     file_paths=$file_paths" $alignment_file "

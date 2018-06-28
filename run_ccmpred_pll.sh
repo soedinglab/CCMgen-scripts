@@ -57,7 +57,7 @@ do
     name=$(basename $alignment_file ".aln")
 
     file_paths=" -b "$mat_dir"/"$name".braw.gz "
-    file_paths=$file_paths" -m $mat_dir/$name.mat "
+    file_paths=$file_paths" -m $mat_dir/$name.raw.mat "
     file_paths=$file_paths" --apc $mat_dir/$name.apc.mat "
     file_paths=$file_paths" --entropy-correction $mat_dir/$name.ec.mat "
     file_paths=$file_paths" $alignment_file "
