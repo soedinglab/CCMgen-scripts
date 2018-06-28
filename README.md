@@ -6,17 +6,13 @@ A collection of scripts to reproduce the results presented in the publication:
 
 ## Installation
 
-Clone this repository using:
+Simply clone this repository by running the command: 
 
 ```bash
 git clone https://github.com/soedinglab/ccmgen-scripts.git
 ```
 
-Then, change into the directory and install the python packages required for plotting by running the command:
-
-```bash
-pip install .
-```
+Running the scripts in this repository requires an installation of [CCMgen/CCMpredpy](https://github.com/soedinglab/CCMgen).
 
 ## Download Data Set
 
