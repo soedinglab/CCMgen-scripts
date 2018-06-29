@@ -22,7 +22,7 @@ def plot_pll_vs_pcd_benchmark_figure(plot, plot_dir, height=400, width=600):
     #first add a legend for the methods
     for trace in plot['data']:
         #adding a legend for the methods
-        if "persistent contrastive diverence APC" in trace['name']:
+        if "persistent contrastive divergence APC" in trace['name']:
             trace_for_legend = copy.copy(trace)
             data.append(trace_for_legend)
             data[-1]['name'] = 'persistent contrastive divergence'
@@ -106,8 +106,8 @@ def main():
     #specify methods to benchmark
     b.add_method("pseudo-likelihood APC", data_dir +"/predictions_pll/", "apc.mat")
     b.add_method("pseudo-likelihood raw", data_dir +"/predictions_pll/", "raw.mat")
-    b.add_method("persistent contrastive diverence APC", data_dir +"/predictions_pcd/", "apc.mat")
-    b.add_method("persistent contrastive diverence raw", data_dir +"/predictions_pcd/", "raw.mat")
+    b.add_method("persistent contrastive divergence APC", data_dir +"/predictions_pcd/", "apc.mat")
+    b.add_method("persistent contrastive divergence raw", data_dir +"/predictions_pcd/", "raw.mat")
 
     #add constraint that all MRF optimizations have exist status 0
     b.add_constraint("opt_code", 0, "greater_equal")
