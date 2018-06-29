@@ -82,11 +82,12 @@ def plot_boxplot_correlation(pearson_r_pll, pearson_r_pcd, plot_file):
     plot = {
     "data": [box_pearson_pll, box_pearson_pcd],
     "layout" : go.Layout(
+        title = "Correlation between APC and Entropy Correction",
         font = dict(size=24),
-        margin=dict(t=10),
-        yaxis=dict(range=[0,1], title="Pearson correlation<br>APC vs Entropy Correction"),
-        width="800",
-        height="400"
+        margin=dict(t=50),
+        yaxis=dict(range=[0,1], title="Pearson correlation"),
+        width="900",
+        height="450"
         )
     }
 
@@ -119,6 +120,11 @@ def main():
 
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)
+
+    if not os.path.exists(pll_dir) or not os.path.exists(pcd_dir):
+        print("You first need to learn Markov Random Field models in {0} and {1}".format(
+            pll_dir, pcd_dir))
+        sys.exit(1)
 
 
     pearson_r_list_pll = []
