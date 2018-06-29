@@ -11,9 +11,11 @@
 ### load libraries
 import argparse
 import os
+import numpy as np
 from benchmark import Benchmark
 import copy
 from plotly.offline import plot as plotly_plot
+import plotly.graph_objs as go
 
 def plot_ccmgen_benchmark_figure(fig, title, plot_file, height=350, width=400):
 
@@ -26,11 +28,9 @@ def plot_ccmgen_benchmark_figure(fig, title, plot_file, height=350, width=400):
         'orientation':"v",
         'x':0.65, 'y': 1.0
     }
-    #fig['layout']['xaxis']={
-    #    'title': "#predicted contacts / protein length"}
     fig['layout']['yaxis']={
-        #'title': "mean precision over proteins",
-        'range' : [0,0.8]
+        'title': "mean precision over proteins",
+        'range' : [0,1]
     }
     fig['layout']['height'] = height
     fig['layout']['width'] = width
@@ -41,7 +41,6 @@ def plot_ccmgen_noise_quant_figure(benchmark_plot_star, benchmark_plot_binary, p
 
 
     ### define entropy noise for star topology
-
     precision_noapc_star = []
     precision_ec_star = []
     x = []
@@ -52,8 +51,8 @@ def plot_ccmgen_noise_quant_figure(benchmark_plot_star, benchmark_plot_binary, p
             precision_ec_star = trace['y']
         x = trace['x']
 
-    entropy_noise_star = precision_ec_star - precision_noapc_star
-    entropy_noise_star_trace =  go.Scatter(
+    entropy_noise_star = np.array(precision_ec_star) - np.array(precision_noapc_star)
+    entropy_noise_star_trace = go.Scatter(
         x = x,
         y = entropy_noise_star,
         name="entropy noise star",
@@ -64,12 +63,12 @@ def plot_ccmgen_noise_quant_figure(benchmark_plot_star, benchmark_plot_binary, p
     precision_noapc_binary = []
     precision_ec_binary = []
     for trace in benchmark_plot_binary['data']:
-        if 'noapc' in trace['name']:
+        if 'no APC' in trace['name']:
             precision_noapc_binary = trace['y']
-        if 'ec' in trace['name']:
+        if 'EC' in trace['name']:
             precision_ec_binary = trace['y']
 
-    entropy_noise_binary = precision_ec_binary - precision_noapc_binary
+    entropy_noise_binary = np.array(precision_ec_binary) - np.array(precision_noapc_binary)
     entropy_noise_binary_trace = go.Scatter(
         x = x,
         y = entropy_noise_binary,
@@ -79,7 +78,7 @@ def plot_ccmgen_noise_quant_figure(benchmark_plot_star, benchmark_plot_binary, p
 
     ### define phylogenetic noise
 
-    phylogenetic_noise = precision_ec_star - precision_ec_binary
+    phylogenetic_noise = np.array(precision_ec_star) - np.array(precision_ec_binary)
     phylogenetic_noise_trace = go.Scatter(
         x = x,
         y = phylogenetic_noise,
@@ -158,8 +157,8 @@ def main():
 
     #specify methods to benchmark
     b.add_method("APC", data_dir +"/recover_pcd_constrained/", "apc.star.mat")
-    b.add_method("no APC", data_dir +"/recover_pcd_constrained/", "raw.star.mat")
     b.add_method("EC", data_dir +"/recover_pcd_constrained/", "ec.star.mat")
+    b.add_method("no APC", data_dir + "/recover_pcd_constrained/", "raw.star.mat")
 
     #add constraint that all MRF optimizations have exist status 0
     b.add_constraint("opt_code", 0, "greater_equal")
@@ -170,7 +169,7 @@ def main():
     #generate a benchmark plot
     benchmark_plot_star = b.plot_precision_vs_rank()
     plot_file = plot_dir+"/"+"fig_6b.html"
-    plot_ccmgen_benchmark_figure(benchmark_plot_star, 'star topology', plot_file, height=350, width=400)
+    plot_ccmgen_benchmark_figure(benchmark_plot_star, 'star topology', plot_file, height=350, width=500)
 
 
 
@@ -196,7 +195,7 @@ def main():
     # generate a benchmark plot
     benchmark_plot_binary = b.plot_precision_vs_rank()
     plot_file = plot_dir+"/"+"fig_6a.html"
-    plot_ccmgen_benchmark_figure(benchmark_plot_binary, 'binary topology', plot_file, height=350, width=400)
+    plot_ccmgen_benchmark_figure(benchmark_plot_binary, 'binary topology', plot_file, height=350, width=500)
 
 
 
@@ -205,7 +204,7 @@ def main():
 
     ### create qunatification of noise plot
     plot_file = plot_dir+"/"+"fig_6c.html"
-    plot_ccmgen_noise_quant_figure(benchmark_plot_star, benchmark_plot_binary, plot_file, height=350, width=400)
+    plot_ccmgen_noise_quant_figure(benchmark_plot_star, benchmark_plot_binary, plot_file, height=350, width=500)
 
 
 
