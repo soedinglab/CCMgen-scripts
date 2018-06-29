@@ -56,7 +56,10 @@ def plot_boxplot(statistics_dict, property, plot_file):
                 exponentformat='e',
                 showexponent='All'
             ),
-            font=dict(size=18)
+            margin=dict(t=10),
+            font=dict(size=18),
+            width=800,
+            height=500
         )
     }
 
@@ -65,7 +68,7 @@ def plot_boxplot(statistics_dict, property, plot_file):
     if property == "mutation_rate":
         plot['layout']['yaxis']['title'] = "mutation rate"
 
-    plotly_plot(plot, filename=plot_file, auto_open=False)
+    plotly_plot(plot, filename=plot_file, auto_open=False, show_link=False)
 
 def parse_args():
     """
