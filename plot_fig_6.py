@@ -183,8 +183,9 @@ def main():
 
     # specify methods to benchmark
     b.add_method("APC", data_dir + "/recover_pcd_constrained/", "apc.binary.mat")
-    b.add_method("no APC", data_dir + "/recover_pcd_constrained/", "raw.binary.mat")
     b.add_method("EC", data_dir + "/recover_pcd_constrained/", "ec.binary.mat")
+    b.add_method("no APC", data_dir + "/recover_pcd_constrained/", "raw.binary.mat")
+
 
     # add constraint that all MRF optimizations have exist status 0
     b.add_constraint("opt_code", 0, "greater_equal")
