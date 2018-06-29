@@ -63,7 +63,7 @@ do
     file_paths=$file_paths" --apc $mat_dir/$name.apc.$topology.mat "
     file_paths=$file_paths" --entropy-correction $mat_dir/$name.ec.$topology.mat "
     file_paths=$file_paths" $alignment_file "
-    log_file=$mat_dir"/"$name.log
+    log_file=$mat_dir"/"$name.$topology.log
 
     if [ ! -f $log_file ]
     then
