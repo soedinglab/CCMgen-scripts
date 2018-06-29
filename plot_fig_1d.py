@@ -58,7 +58,10 @@ def plot_runtime(plot_data, plot_file):
                 tickvals=[1, 10, 100, 500, 1000, 5000, 10000],
                 ticktext=[1, 10, 100, 500, 1000, 5000, 10000]
             ),
-            font=dict(size=18)
+            font=dict(size=18),
+            width=800,
+            height=500,
+            margin=dict(t=10)
         )
     }
 
@@ -72,7 +75,7 @@ def main():
     data_dir = args.data_dir
     plot_dir = data_dir + "/plots/"
     mat_dirs = [data_dir + "/predictions_pll/", data_dir + "/predictions_pcd/"]
-    methods = ["pseudo-likelihood", "persistent contrastive divergence"]
+    methods = ["pseudo-likelihood", "persistent<br>contrastive divergence"]
 
 
     if not os.path.exists(plot_dir):
