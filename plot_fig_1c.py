@@ -21,9 +21,11 @@ def plot_pll_vs_pcd_benchmark_figure(plot, plot_dir, height=400, width=600):
 
     #first add a legend for the methods
     for trace in plot['data']:
+        print(trace['name'])
+
         #adding a legend for the methods
         if "persistent contrastive divergence APC" in trace['name']:
-            trace_for_legend = copy.copy(trace)
+            trace_for_legend = copy.deepcopy(trace)
             data.append(trace_for_legend)
             data[-1]['name'] = 'persistent contrastive divergence'
             data[-1]['legendgroup'] = 'method'
@@ -31,7 +33,7 @@ def plot_pll_vs_pcd_benchmark_figure(plot, plot_dir, height=400, width=600):
             data[-1]['showlegend'] = True
 
         if "pseudo-likelihood APC" in trace['name']:
-            trace_for_legend = copy.copy(trace)
+            trace_for_legend = copy.deepcopy(trace)
             data.append(trace_for_legend)
             data[-1]['name'] = 'pseudo-likelihood'
             data[-1]['legendgroup'] = 'method'
@@ -39,8 +41,13 @@ def plot_pll_vs_pcd_benchmark_figure(plot, plot_dir, height=400, width=600):
             data[-1]['line']['dash'] = 'dot'
             data[-1]['showlegend'] = True
 
+
+
+    print("\nsecond\n")
+
     #add all other traces and legend for correction
     for trace in plot['data']:
+        print(trace['name'])
         trace['legendgroup']='correction'
 
         #pseudo-likelihood will be dotted
