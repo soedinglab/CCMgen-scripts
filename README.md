@@ -156,9 +156,9 @@ In order to generate all the necessary data to reproduce the analysis presented 
 
 ```python plot_fig_6.py $data_dir```
 
-	This script will reproduce the contact prediction benchmark on the synthetic alignments from Figures 6A and 6B and the quantification of noise plot from figure 6C.
-	It requires the data generated in steps 5a and 5b.
-	The plots will be written to ```$data_dir/plots/benchmark/fig_6a.html```, ```$data_dir/plots/benchmark/fig_6b.html``` and ```$data_dir/plots/benchmark/fig_6c.html```.
+This script will reproduce the contact prediction benchmark on the synthetic alignments from Figures 6A and 6B and the quantification of noise plot from figure 6C.
+It requires the data generated in steps 5a and 5b.
+The plots will be written to ```$data_dir/plots/benchmark/fig_6a.html```, ```$data_dir/plots/benchmark/fig_6b.html``` and ```$data_dir/plots/benchmark/fig_6c.html```.
 
 
 ## Reproduce Supplemental Figures
