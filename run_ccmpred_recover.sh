@@ -28,7 +28,7 @@ echo "using " $OMP_NUM_THREADS "threads for omp parallelization"
 # create data structure
 #------------------------------------------------------------------------------
 mat_dir=$data_dir"/recover_pcd_constrained/"
-alignment_dir=$data_dir"/aln/"
+sample_dir=$data_dir"/samples_pcd_constrained/"
 
 if [ ! -d $mat_dir ]
 then
@@ -54,20 +54,20 @@ settings=$settings" --maxit 5000 --epsilon 1e-8 --convergence_prev 5"
 # Run CCMpredPy
 #------------------------------------------------------------------------------
 
-for alignment_file in $(ls $alignment_dir/*.aln);
+for synthetic_alignment_file in $(ls $sample_dir/*.$topology.aln);
 do
 
-    name=$(basename $alignment_file ".aln")
+    name=$(basename $synthetic_alignment_file ".$topology.aln")
 
     file_paths=" -m $mat_dir/$name.raw.$topology.mat "
     file_paths=$file_paths" --apc $mat_dir/$name.apc.$topology.mat "
     file_paths=$file_paths" --entropy-correction $mat_dir/$name.ec.$topology.mat "
-    file_paths=$file_paths" $alignment_file "
+    file_paths=$file_paths" $synthetic_alignment_file "
     log_file=$mat_dir"/"$name.$topology.log
 
     if [ ! -f $log_file ]
     then
-        echo -e "Running CCMpredPy with PCD for protein: $name \n(Status is logged in: $log_file)"
+        echo -e "Running CCMpredPy with PCD for protein $name and topology $topology\n(Status is logged in: $log_file)"
         ccmpred $settings" "$file_paths > $log_file
     fi
 done
