@@ -170,14 +170,24 @@ The plots will be written to ```$data_dir/plots/benchmark/fig_6a.html```, ```$da
 	In order to generate the plot, MRF models need to be learned by maximizing pseudo-likelihood and with persistent contrastive divergence as described in step 1a and 1b. Furthermore, MCMC samples from the learned MRF models need to be generated as described in step 2a and 2b.
 	The plot will be written to ```$data_dir/plots/supplement/fig_S1.html```.
 
-2. ```python plot_fig_S4.py $data_dir```
+2. ```python plot_fig_S3.py $data_dir```
+
+	This script will reproduce supplememtal Figures 3a and 3b.
+	3a: For all proteins in the data set it will generate scatter plots, comparing the APC corrected contact scores computed from MRF models learned with pseudo-likelihood maximization and persistent contrastive divergence.
+	The scatter plots for each protein will be written to ```$data_dir/plots/supplement/pll_vs_pcd_apc_score_comparison/```.
+	3b: A boxplot visualizing the distribution of various correlation statistics between APC corrected contact scores computed from MRF models learned with pseudo-likelihood maximization and persistent contrastive divergence.. 
+        In order to generate the plots, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1a and 1b.
+        The plot will be written to ```$data_dir/plots/supplement/fig_S3b.html```.
+
+
+3. ```python plot_fig_S4.py $data_dir```
 
 	This script will reproduce supplememtal Figure 4.
 	It generates a boxplot visualizing the pearson correlation coefficients between the APC and EC correction terms for all pairs of residues over all proteins in the PSICOV dataset.
 	In order to generate the plot, MRF models need to be learned by maximizing pseudo-likelihood and persistent contrastive divergence as described in step 1a and 1b.
 	The plot will be written to ```$data_dir/plots/supplement/fig_S4.html```.
 		
-3. ```python plot_fig_S5.py $data_dir```
+4. ```python plot_fig_S5.py $data_dir```
 
 	This script will reproduce supplemental Figures 5A and 5B.
 	It generates boxplots visualizing the distribution of mutation rates used for generating the synthetic alignments with CCMgen and boxplots visualizing the difference in Neff values between synthetic and original Pfam alignments.
