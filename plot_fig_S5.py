@@ -54,7 +54,7 @@ def plot_boxplot(statistics_dict, property, plot_file):
         "layout": go.Layout(
             yaxis=dict(
                 exponentformat='e',
-                showexponent='All'
+                showexponent='all'
             ),
             margin=dict(t=10),
             font=dict(size=18),
