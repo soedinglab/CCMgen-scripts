@@ -67,7 +67,7 @@ def plot_boxplot_correlation(pearson_r_pll, pearson_r_pcd, plot_file):
         name = "pseudo-likelihood",
         showlegend=False,
         boxmean=False,
-        boxpoints='Outliers'
+        boxpoints='outliers'
     )
 
     box_pearson_pcd = go.Box(
@@ -75,7 +75,7 @@ def plot_boxplot_correlation(pearson_r_pll, pearson_r_pcd, plot_file):
         name="persistent contrastive divergence",
         showlegend=False,
         boxmean=False,
-        boxpoints='Outliers'
+        boxpoints='outliers'
     )
 
 
@@ -86,8 +86,8 @@ def plot_boxplot_correlation(pearson_r_pll, pearson_r_pcd, plot_file):
         font = dict(size=24),
         margin=dict(t=50),
         yaxis=dict(range=[0,1], title="Pearson correlation"),
-        width="900",
-        height="450"
+        width=900,
+        height=450
         )
     }
 
